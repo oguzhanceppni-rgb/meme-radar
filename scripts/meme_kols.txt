@@ -1,0 +1,20 @@
+# Known crypto/Solana memecoin accounts. A coin's X followed by these = "mutual" (+).
+# Each handle = 1 X request per hour of scanning; keep the list short (~20).
+blknoiz06
+MustStopMurad
+frankdegods
+Cupseyy
+orangie
+notthreadguy
+aeyakovenko
+rajgokal
+a1lon9
+pumpfun
+solana
+0xMert_
+weremeow
+cobie
+inversebrah
+gainzy222
+CryptoKaleo
+TJRTrades

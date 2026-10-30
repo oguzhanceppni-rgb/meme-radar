@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 1-bit terminal: pure black ground, white ink, one grey; red only for losses. Square pixels everywhere. */
+@layer base {
+  :root {
+    color-scheme: dark;
+    --ink: 0 0% 0%;        /* ground */
+    --glass: 0 0% 0%;      /* panels: black, framed by white pixels */
+    --line: 0 0% 100%;
+    --text: 0 0% 100%;
+    --dim: 0 0% 62%;
+    --pink: 0 0% 100%;     /* primary = inverted block */
+    --cyan: 0 0% 78%;      /* secondary data */
+    --gold: 0 0% 100%;     /* wins / high score */
+    --red: 0 100% 62%;     /* alınmaz / losses */
+    --green: 142 72% 50%;  /* alınır */
+    --yellow: 48 100% 55%; /* kararsız */
+    --background: var(--ink); --foreground: var(--text);
+    --card: var(--glass); --card-foreground: var(--text);
+    --popover: 0 0% 0%; --popover-foreground: var(--text);
+    --primary: 0 0% 100%; --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 14%; --secondary-foreground: var(--text);
+    --muted: 0 0% 12%; --muted-foreground: var(--dim);
+    --accent: 0 0% 18%; --accent-foreground: var(--text);
+    --destructive: var(--red); --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 100%; --input: 0 0% 100%; --ring: 0 0% 100%;
+    --radius: 0px;
+  }
+  *, *::before, *::after { border-radius: 0 !important; }
+  html, body, #root { min-height: 100%; }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Pixelify Sans", "Courier New", monospace;
+    -webkit-font-smoothing: none; font-smooth: never;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .font-display { font-family: "Press Start 2P", "Courier New", monospace; letter-spacing: 0; line-height: 1.25; }
+  .font-data { font-family: "VT323", "Courier New", monospace; font-variant-numeric: tabular-nums; font-size-adjust: 0.62; }
+  img { image-rendering: pixelated; }
+  h1, h2 { text-wrap: balance; }
+  :focus-visible { outline: 2px dashed #fff !important; outline-offset: 3px; }
+  input[type=range] { accent-color: #fff; }
+}
+
+@layer components {
+  .glass { background: #000; border: 2px solid #fff; box-shadow: 4px 4px 0 0 hsl(0 0% 100% / 0.28); }
+  /* pixel button: hard white shadow that collapses on press */
+  .glow-pink { border: 2px solid #fff; box-shadow: 4px 4px 0 0 #fff; transition: transform .05s steps(1), box-shadow .05s steps(1); }
+  .glow-pink:active { transform: translate(4px, 4px); box-shadow: 0 0 0 0 #fff; }
+  .chip { @apply inline-flex items-center gap-1 px-2 py-0.5 text-[13px] font-data; background: #000; border: 1px solid hsl(0 0% 100% / 0.6); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rise { animation: rise .3s steps(3) both; }
+  @keyframes rise { from { transform: translateY(6px); opacity: .3; } }
+  .pulse-ring { animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { background: #000; color: #fff; } }
+}
+@media (prefers-reduced-motion: no-preference) { .cursor { animation: cur 1s steps(1) infinite; } @keyframes cur { 50% { opacity: 0; } } }

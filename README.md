@@ -23,3 +23,6 @@ cp .env.example .env    # kendi anahtarlarını yaz
    ```bash
    cd web && pnpm i && npx vite build --base ./
    ```
+
+## Güncel site (2026-11-18)
+`web/dist/meme-radar.html` = yayındaki Meme Radar artifact'ının derlenmiş son hali (Takip sekmesi dahil). `web/src` 30.10 kaynak anlık görüntüsüdür; sonraki kaynak değişiklikleri yerelde korunmadı.
